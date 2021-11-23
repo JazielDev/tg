@@ -217,13 +217,23 @@ def zbsn(nome):
                     fl = msg.split('/placa')
                     ipp = re.sub('[^A-Z]', '', msg)
                     ip = re.sub('[^0-9]', '', msg)
-                    url = requests.get("https://apicarros.com/v1/consulta/" + ipp + ip + "/json")
+                    url = requests.get("https://apicarros.com/v1/consulta/" + ipp + ip + "/json", verify=False)
                     req = url.json()
                     response = f'🔍<b>PLACA ENCONTRADA</b>🔍\n\n<b>• PLACA</b>: <code>{req["placa"]}</code>\n<b>• ANO</b>: <code>{req["ano"]}</code>\n<b>• CHASSI</b>: <code>{req["chassi"]}</code>\n<b>• COR</b>: <code>{req["cor"]}</code>\n<b>• DATA</b>: <code>{req["data"]}</code>\n<b>• ALERME</b>: <code>{req["dataAtualizacaoAlarme"]}</code>\n<b>• VEICULO</b>: <code>{req["dataAtualizacaoCaracteristicasVeiculo"]}</code>\n<b>• ROUBO/FURTO</b>: <code>{req["dataAtualizacaoRouboFurto"]}</code>\n<b>• MARCA</b>: <code>{req["marca"]}</code>\n<b>• MODELO</b>: <code>{req["modelo"]}</code>\n<b>• MUNICÍPIO</b>: <code>{req["municipio"]}</code>\n<b>• UF</b>: <code>{req["uf"]}</code>\n<b>• SITUAÇÃO</b>: <code>{req["situacao"]}</code>\n\n<b>• By</b>: @federaldadosbot'
-                    bot.reply_to(nome, response, parse_mode="html") 
-                    
+                    bot.reply_to(nome, response, parse_mode="html")
+                    return bot.send_message(nome.chat.id, response, reply_markup=botao, reply_to_message_id=message.message_id, parse_mode='html')
+                    def iq_callback(query):
+                        data = query.data
+                        if data == ('get-USD'):
+                           bot.delete_message(nome.chat.id, nome.message_id)
                 except:
-                	bot.reply_to(nome, '<b>PLACA NÃO FOI ENCONTRADA</b>', parse_mode='html')
+                	    #bot.reply_to(message, '<b>CPF NÃO FOI ENCONTRADO</b>', parse_mode='html')
+                            return bot.send_message(nome.chat.id, '<b>CPF NÃO FOI ENCONTRADO</b>', reply_markup=botao, reply_to_message_id=message.message_id, parse_mode='html')
+                            def iq_callback(query):
+                                data = query.data
+                                if data == ('get-USD'):
+                                   bot.delete_message(nome.chat.id, nome.message_id)
+                                    
             else:
                 		bot.reply_to(nome, '''𝘾𝙊𝙈𝙋𝙍𝙀 𝙅𝘼 𝙊 𝙎𝙀𝙐 𝘼𝘾𝙀𝙎𝙎𝙊 𝘼𝙊 𝙉𝙊𝙎𝙎𝙊 𝘽𝙊𝙏
 🔍 ⚡️「Federal Dados」⚡️ 🔎
@@ -580,9 +590,9 @@ def zbsn(message):
                     msg = message.text
                     fl = msg.split('/set')
                     ip = re.sub('[^0-9]', '', msg)
-                    url = requests.get('http://ghostcenter.xyz/api/nome/' + ip, verify=False)
+                    url = requests.get('http://ghostcenter.xyz/api/nome/' + msg, verify=False)
                     req = url.json() 
-                    response = (req+'\n@federaldados')
+                    response = req
                     #response = f'🔍 <b>CPF ENCONTRADO</b> 🔍\n\n<b>• CPF</b>: <code>{req["cpf"]}</code>\n<b>• NOME</b>: <code>{req["nome"]}</code>\n<b>• NASCIMENTO</b>: <code>{req["nascimento"]}</code>\n<b>• SEXO</b>: <code>{req["sexo"]}</code>\n\n<b>• By</b>: @federaldadosbot'
                     bot.send_chat_action(message.chat.id, 'typing')
                     return bot.send_message(message.chat.id, response, reply_markup=botao, reply_to_message_id=message.message_id, parse_mode='html')
