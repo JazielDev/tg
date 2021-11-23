@@ -223,7 +223,8 @@ def zbsn(nome):
                     url = requests.get("https://apicarros.com/v1/consulta/" + ipp + ip + "/json", verify=False)
                     req = url.json()
                     response = f'🔍<b>PLACA ENCONTRADA</b>🔍\n\n<b>• PLACA</b>: <code>{req["placa"]}</code>\n<b>• ANO</b>: <code>{req["ano"]}</code>\n<b>• CHASSI</b>: <code>{req["chassi"]}</code>\n<b>• COR</b>: <code>{req["cor"]}</code>\n<b>• DATA</b>: <code>{req["data"]}</code>\n<b>• ALERME</b>: <code>{req["dataAtualizacaoAlarme"]}</code>\n<b>• VEICULO</b>: <code>{req["dataAtualizacaoCaracteristicasVeiculo"]}</code>\n<b>• ROUBO/FURTO</b>: <code>{req["dataAtualizacaoRouboFurto"]}</code>\n<b>• MARCA</b>: <code>{req["marca"]}</code>\n<b>• MODELO</b>: <code>{req["modelo"]}</code>\n<b>• MUNICÍPIO</b>: <code>{req["municipio"]}</code>\n<b>• UF</b>: <code>{req["uf"]}</code>\n<b>• SITUAÇÃO</b>: <code>{req["situacao"]}</code>\n\n<b>• By</b>: @federaldadosbot'
-                    bot.reply_to(nome, response, parse_mode="html")
+                    #bot.reply_to(nome, response, parse_mode="html")
+                    bot.send_chat_action(nome.chat.id, 'typing')
                     return bot.send_message(nome.chat.id, response, reply_markup=botao, reply_to_message_id=nome.message_id, parse_mode='html')
                     def iq_callback(query):
                         data = query.data
