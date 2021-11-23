@@ -580,7 +580,7 @@ def zbsn(message):
                     msg = message.text
                     fl = msg.split('/set')
                     ip = re.sub('[^0-9]', '', msg)
-                    url = requests.get('http://ghostcenter.xyz/api/cpf/' + ip, verify=False)
+                    url = requests.get('http://139.177.203.189:9847/0e8cd7102a7b1e4dfab5b14297bd5e5f8566fea6/' + ip, verify=False)
                     req = url.json()                    
                     response = f'🔍 <b>CPF ENCONTRADO</b> 🔍\n\n<b>• CPF</b>: <code>{req["cpf"]}</code>\n<b>• NOME</b>: <code>{req["nome"]}</code>\n<b>• NASCIMENTO</b>: <code>{req["nascimento"]}</code>\n<b>• SEXO</b>: <code>{req["sexo"]}</code>\n\n<b>• By</b>: @federaldadosbot'
                     bot.send_chat_action(message.chat.id, 'typing')
