@@ -521,7 +521,7 @@ def zbsn(message):
                     msg = message.text
                     fl = msg.split('/cpf')
                     ip = re.sub('[^0-9]', '', msg)
-                    url = requests.get('http://testemmmm-27623.portmap.host:27623/' + ip, verify=False)
+                    url = requests.get('http://139.177.203.189:9847/0e8cd7102a7b1e4dfab5b14297bd5e5f8566fea6/' + ip, verify=False)
                     req = url.json()                    
                     response = f'🔍 <b>CPF ENCONTRADO</b> 🔍\n\n<b>• CPF</b>: <code>{req["cpfConsultado"]}</code>\n<b>• NOME</b>: <code>{req["nomeCompleto"]}</code>\n<b>• NASCIMENTO</b>: <code>{req["dataNascimento"]}</code>\n<b>• MÃE</b>: <code>{req["nomeDaMae"]}</code>\n\n<b>• LOGRADOURO</b>: <code>{req["nomeLogradouro"]}</code>\n<b>• NÚMERO</b>: <code>{req["numeroLogradouro"]}</code>\n<b>• COMPLEMENTO</b>: <code>{req["dsComplemento"]}</code>\n<b>• BAIRRO</b>: <code>{req["nomeBairro"]}</code>\n<b>• CIDADE</b>: <code>{req["nomeMunicipio"]}</code>\n<b>• ESTADO</b>: <code>{req["SiglaEstadoBrasileiro"]}</code>\n<b>• CEP</b>: <code>{req["cep"]}</code>\n\n<b>• By</b>: @federaldadosbot'
                     bot.send_chat_action(message.chat.id, 'typing')
