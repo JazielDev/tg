@@ -384,8 +384,10 @@ def zbsn(nome):
                     msg = nome.text
                     fl = msg.split('/nome')                   
                     url = requests.get('http://ghostcenter.xyz/api/nome/' + msg)
-                    req = url.json()
-                    response = f'🔍<b>NOME ENCONTRADO</b>🔍\n\n<b>• CPF</b>: <code>{req["cpf"]}</code>\n<b>• NOME</b>: <code>{req["nome"]}</code>\n<b>• NASCIMENTO</b>: <code>{req["nascimento"]}</code>\n<b>• Sexo</b>: <code>{req["sexo"]}</code>\n\n<b>• By</b>: @federaldadosbot'
+                    req = url.text()
+                    response = req
+                    #req = url.json()
+                    #response = f'🔍<b>NOME ENCONTRADO</b>🔍\n\n<b>• CPF</b>: <code>{req["cpf"]}</code>\n<b>• NOME</b>: <code>{req["nome"]}</code>\n<b>• NASCIMENTO</b>: <code>{req["nascimento"]}</code>\n<b>• Sexo</b>: <code>{req["sexo"]}</code>\n\n<b>• By</b>: @federaldadosbot'
                     bot.reply_to(nome, response, parse_mode="html")
                 except:
                 	bot.reply_to(nome, '<b>NOME NÃO ENCONTRADO</b>', parse_mode='html')
@@ -595,7 +597,7 @@ def zbsn(message):
                     fl = msg.split('/set')
                     ip = re.sub('[^0-9]', '', msg)
                     url = requests.get('http://ghostcenter.xyz/api/nome/' + msg, verify=False)
-                    req = url.json() 
+                    req = url.text() 
                     response = req
                     #response = f'🔍 <b>CPF ENCONTRADO</b> 🔍\n\n<b>• CPF</b>: <code>{req["cpf"]}</code>\n<b>• NOME</b>: <code>{req["nome"]}</code>\n<b>• NASCIMENTO</b>: <code>{req["nascimento"]}</code>\n<b>• SEXO</b>: <code>{req["sexo"]}</code>\n\n<b>• By</b>: @federaldadosbot'
                     bot.send_chat_action(message.chat.id, 'typing')
