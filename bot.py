@@ -208,6 +208,9 @@ def zn(nome):
                 
 @bot.message_handler(commands=['placa'])
 def zbsn(nome):
+            botao = telebot.types.InlineKeyboardMarkup()
+            delete = telebot.types.InlineKeyboardButton('Apagar', callback_data='get-USD')
+            botao.add(delete)
             id1 = nome.chat.id
 
             ltnome = PRIVADO + GRUPO 
